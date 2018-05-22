@@ -1,0 +1,39 @@
+.feature{
+	margin-top: 300px;
+}
+.sections{
+	font-size: 3em;
+}
+#dragright{
+	margin-left: 150px;
+}
+.panel{
+	margin-bottom: 150px; 
+}
+.pull {
+	margin-left: 50px;
+}
+
+
+
+/* --------------------------------------
+   Media Queries
+   -------------------------------------- */
+
+/* Portrait & landscape phone */
+@media (max-width: 480px) {
+#dragright{margin-left: 50px;}
+	.pull {margin-left: 20px;}	
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 768px) {
+	#dragright{margin-left: 50px;}
+	.pull {margin-left: 20px;}
+
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+	
+}

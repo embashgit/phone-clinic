@@ -1,0 +1,102 @@
+*{
+   padding: 0px;
+   margin: 0px;
+}
+.navbar {
+    padding: 5px 5px;
+    
+    border: none;
+    border-radius: 0;
+    margin-bottom: 0px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.nav-link{
+   margin-top: 5px;
+   font-size: 25px;
+   color: #eee;
+}
+
+ #myCarousel{
+   width: 100%;
+    padding: 0px;
+   margin: 0px;
+      margin-top: 0;
+   
+   }
+   .carousel-caption {
+   font-size: 24px;
+}
+
+.carousel-caption h4 {
+   font-size: 32px;
+}
+#myCarousel .item { 
+   padding: 0px;
+   margin: 0px;
+   height: 450px;
+   width: 100% }
+
+
+
+#slide1 {
+   background: url('/img/caro1.jpg') top center no-repeat;
+
+ width: 100px;
+}#slide2 {
+   background: url('/img/caro2.jpg') top center no-repeat;
+
+}
+#slide3 {
+    width: 100px;
+   background: url('/img/caro3.jpg') top center no-repeat;
+}
+#slide4 {
+   width: 100px;
+   background: url('/img/caro4.jpg') top center no-repeat;
+}
+#slide5{
+   background: url('/img/ScreenRepair.jpg') top center no-repeat;
+}
+#sider{
+margin: 0px;
+float:left;
+overflow-y: auto;
+height: 450px;
+}
+
+.well{
+   margin-bottom: 50px;
+}
+#items{
+   padding-left: 25px;
+}
+#items li{
+   padding: 0, 5px, 3px, 0;
+}
+
+footer{
+   background: #6D7993;
+
+   color: #fff;
+   padding: 20px;
+   font-size: 14px;
+}
+ul.unstyled{
+   padding: 0px;
+   list-style: none;
+
+}
+ul li{
+   list-style: none;
+}
+a{
+  text-decoration: none;
+}
