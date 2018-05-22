@@ -15,7 +15,7 @@
     <hr>
     <div class="row">
       
-          <a href="#board" > <div class="col-sm-4" style="border-left: 6px solid black; border-bottom: 5px solid black;margin-left: 30%; border-radius:5px;  background: grey; color: white; margin-bottom: 20px"><h1 style="text-align: center">Suggested Fault</h1></div></a> 
+          <a href="#board" > <div class="col-sm-4" style="border-left: 6px solid black; border-bottom: 5px solid black;margin-left: 30%; border-radius:5px;  background: grey; color: white; margin-bottom: 20px"><h1 style="text-align: center">Suggested Faults</h1></div></a> 
        </div>
        <div  id="content" class="row">
        <div id="board" class="container">
