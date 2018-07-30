@@ -41,13 +41,10 @@
 						        <a class="nav-link" href="{{ route('phones.index') }}">Phones</a>
 						      </li>
 						      <li class="nav-item">
-						        <a class="nav-link" href="{{ route('models.index') }}">models</a>
+						        <a class="nav-link" href="#">Models</a>
 						      </li>
 						      <li class="nav-item">
-						        <a class="nav-link" href="{{ route('problems.index') }}">faults</a>
-						      </li>
-						      <li class="nav-item">
-						        <a class="nav-link" href="{{ route('solutions.index') }}">Solutions</a>
+						        <a class="nav-link" href="#">Problems</a>
 						      </li>
 						      <li class="nav-item">
 							<a href="#" style="text-decoration: none;" class="dropdown-toggle" data-toggle="dropdown" class="createbutton nav-link">More Phones <span class="caret"></span></a>

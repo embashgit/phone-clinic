@@ -39,7 +39,29 @@ class SolutionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+        'description'=>'required|min:10',
+        'image'=>'nullable',
+        'problem_id'=>'required'
+         ));
+        $solution = new Solution;
+        $solution->description = $request->description;
+        $solution->problem_id = $request->problem_id;
+        
+        $solution->save();
+
+   
+        return redirect()->back()->with('success_message', 'New Solution added successfully!');
+        
+    }
+
+    public function delete($id)
+    {
+        $solution = Solution::findOrFail($id);
+        $solution->delete();
+        
+        return redirect()->back()->with('success_message', ' Detroyed successfully!');
+
     }
 
     /**
@@ -55,6 +77,8 @@ class SolutionController extends Controller
 
         return view('solution.show', compact('solution'));
     }
+
+
 
 
     public function problem_solution($id)
@@ -111,6 +135,10 @@ class SolutionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $solution = Solution::findOrFail($id);
+        $solution->delete();
+        
+        return redirect()->back()->with('success_message', ' Detroyed successfully!');
+
     }
 }

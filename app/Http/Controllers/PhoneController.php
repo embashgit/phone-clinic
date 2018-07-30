@@ -69,8 +69,10 @@ class PhoneController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {
-        //
+    {       
+        $phone = Phone::findOrFail($id);
+        $phones = Phone::all();
+        return View('admin.phones.show', compact("phone", 'phones','model'));
     }
 
     /**

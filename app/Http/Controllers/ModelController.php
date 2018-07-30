@@ -14,7 +14,9 @@ class ModelController extends Controller
      */
     public function index()
     {
-        //
+        $phones = Phone::all();
+        $models = Model::orderBy('id', 'name')->paginate(5);
+        return View('admin.models.index', compact('models','phones'));
     }
 
     /**
@@ -35,7 +37,25 @@ class ModelController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formInput = $request->except('image');
+         $this->validate($request, array(
+        'name'=>'required|max:10',
+        'number'=>'required|min:4',
+        'category'=>'required',
+        'os'=>'required',
+        'image'=>'image|mimes:png,jpg,jpeg|max:10000',
+        'phone_id' => 'required'
+         ));
+        $image = $request->image;
+
+        if($image){
+            $imageName = date("Y-m-d"). '-' .$image->getClientOriginalName();
+            $image->move(public_path('/uploads/images'), $imageName );
+            $formInput['image'] = $imageName;
+        }
+        Model::create($formInput);
+        return redirect()->route('models.index')->with('success_message', 'A New Phone model stored successfully!');
+
     }
 
     /**
@@ -46,9 +66,10 @@ class ModelController extends Controller
      */
     public function show($id)
     {
-        $phone_type = Model::pluck('id', 'brand')->where('phone_id', $id);
+        $phones = Phone::all();
+        $model = Model::findOrFail($id);
 
-        return view('front.phone_type', compact('phone_type'));
+        return view('admin.models.show', compact('model','phones'));
     }
 
     public function phone_model($id)
@@ -93,6 +114,10 @@ class ModelController extends Controller
      */
     public function destroy($id)
     {
-        //
+$model = Model::findOrFail($id);
+         $model->delete();
+
+         return redirect()->route('models.index')->with('success_message', 'A model has been successfully deleted!');
     }
+    
 }

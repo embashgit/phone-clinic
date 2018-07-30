@@ -1,9 +1,6 @@
-@extends('layouts.app2')
-
-@section('content')
-<div  class="row">
-   <div style="margin-top: 50px" class="col-8 col-offset-2">
-     @if (session()->has('success_message'))
+         @extends('layouts.app2')
+         @section('content')
+          @if (session()->has('success_message'))
      <hr>
             <div style="text-align: center;" class="alert alert-success">
                 {{ Session::get('success_message') }}
@@ -17,21 +14,20 @@
                 {{ session()->get('error_message') }}
             </div>
         @endif
-          @if ($errors->has('brand'))
-          <div style="text-align: center;" class="alert alert-danger">
-             <span class="help-block"> {{ $errors->first('brand') }}</span>
-            </div>
-           
-        @endif
-            <div class="col-8">
-            <h1 >List of Available Phones</h1>
-            </div>
-
-            <div class="col-4">
+        <div class="row">
+        	<div style="margin-top: 40px" class="col-4 col-offset-4 ">
+        		<div align="center" class="panel">
+                    <h2>{{ $problem->model->name }}</h2>
+        			<i style="text-align: justify;">Problem: "{{$problem->description}}</i>"
+        		</div>
+        	</div>
+        </div>
+                 <div class="row">           
+            <div align="right" class="col-4">
 
             
             <button type="button" style="margin-top: 20px" class="btn btn-primary btn-lg  pull-right" data-toggle="modal" data-target="#exampleModal">
-               Create a new Phone
+               Add Solutions
                 </button>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
@@ -43,21 +39,21 @@
                 </button>
                 </div>
                    <div class="modal-body">
-                    <h3 align="center">Create a new phone</h3>
+                    <h3 align="center">Add new solution</h3>
                     <hr>
             <div align="center">
-            {!! Form::open(['route'=>'phones.store', 'class'=>'form-horizontal form-label-left'])!!}
+            {!! Form::open(['route'=>'solutions.store', 'class'=>'form-horizontal form-label-left'])!!}
 
 
-             <div class="form-group{{ $errors->has('brand') ? ' has-error' : '' }}" >
-    
+             <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}" >
+            <input type="hidden" name="problem_id" value="{{ $problem->id }}" />
         
-             <input type="text" name="brand" class="form-control" placeholder="enter Phone brand">
+             <textarea type="text" name="description" class="form-control" placeholder="Add Solution Steps here"></textarea>
 
         
-         @if ($errors->has('brand'))
-            <span class="help-block"> {{ $errors->first('brand') }}</span>
-        @endif
+             @if ($errors->has('description'))
+                <span class="help-block"> {{ $errors->first('description') }}</span>
+            @endif
          </div>
     
      
@@ -76,17 +72,18 @@
             </div>
             </div>
             </div>
-            </div>
-          </div>
-        </div>
-        <hr>
+         </div>
+        <div align="left"><h3 class="col-8">Available Solution steps</h3></div>
+     </div>
+
+        
           <div class="row">
           <div class="col-8 col-offset-2">
                 <table class="table table-striped table-bordered ">
                     <thead>
                         <tr>
-                            <th>S/N</th>
-                            <th>Phone</th>
+                            <th>Steps</th>
+                        	<th>Description</th>
                             <th>Action</th>
 
                             
@@ -94,34 +91,31 @@
                     </thead>
                     <tfoot>
                         <tr>
-                           <th>S/N</th>
-                            <th>Phone</th>
+                           <th>Steps</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        @if (count($phones))
-                        @foreach($phones as $phone)
+                        
+                        @foreach($solutions as $solution)
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
-                           <td> <a class="btn btn-info btn-secondary" href="{{ route('phones.edit', ['id' => $phone->id]) }}"> {{ $phone->brand }} </a></td>               
-                                                             
-                                 
-
-                            
+                           
+                           <td>{{$solution->description}}</td>               
                             <td>
-                                <a href="{{ route('phones.destroy', ['id' => $phone->id]) }}" class="btn btn-danger btn-xs">Delete</a>
-                                <a href="{{ route('phones.show', ['id' => $phone->id]) }}" class="btn btn-info btn-xs pull-right">Show</a>
+                                <a href="{{ route('solutions.destroy', ['id' => $solution->id]) }}" class="btn btn-danger btn-xs">Delete</a>
+                                <br>
+                                
                             </td>
                         </tr>
                         @endforeach
-                        @endif
+                        
+
+                     	
                     </tbody>
                 </table>
-                {!! $phones->render() !!}
+                
 </div>
 </div>
 @endsection
-
-
-

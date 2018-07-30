@@ -108,7 +108,7 @@
                 <div class="links" style="margin-top: 50px">
                     <a href="#">facebook</a>
                     <a href="#">twitter</a>
-                    <a href="{{ route('admin.dashboard') }}">admin</a>
+                    <a href="{{ route('phones.index') }}">admin</a>
                    
                 </div>
             </div>

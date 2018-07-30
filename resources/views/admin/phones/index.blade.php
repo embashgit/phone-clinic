@@ -1,4 +1,4 @@
-@extends('layouts.manage')
+@extends('layouts.app2')
 
 @section('content')
 <div class="container">
@@ -49,7 +49,7 @@
                         @foreach($phones as $phone)
                         <tr>
                             <td>{!! $loop->iteration !!}</td>
-                            <td>{{ $phone->name }}</td>
+                            <td>{{ $phone->brand }}</td>
                           
                             
                             

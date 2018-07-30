@@ -30,6 +30,7 @@ Route::resource('/phones', 'PhoneController');
 Route::resource('/models', 'ModelController');
 Route::resource('problems', 'ProblemController');
 Route::resource('solutions', 'SolutionController');
+Route::post('problem/solutions/{id}','SolutionController@delete')->name('solution.remove');
 });
 Auth::routes();
 

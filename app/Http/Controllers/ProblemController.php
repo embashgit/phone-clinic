@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Problem;
 use App\Models\Phone;
+use App\Models\Model;
 
 class ProblemController extends Controller
 {
@@ -15,7 +16,11 @@ class ProblemController extends Controller
      */
     public function index()
     {
-        //
+        $faults= Problem::orderBy('id', 'topic')->paginate(5);
+        $phones = Phone::all();
+        $models = Model::all();
+
+        return view('admin.problems.index', compact('faults','models','phones'));
     }
 
     /**
@@ -36,7 +41,21 @@ class ProblemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, array(
+        'topic'=>'required',
+        'type'=>'required',
+        'description'=>'required',
+        'model_id'=>'required'
+         ));
+        $fault = new Problem;
+        $fault->topic = $request->topic;
+        $fault->type = $request->type;
+        $fault->description = $request->description;
+        $fault->model_id = $request->model_id;
+        $fault->save();
+        return redirect()->route('problems.index')->with('success_message', 'A New fault recorded successfully!');
+        
+
     }
 
     /**
@@ -47,7 +66,11 @@ class ProblemController extends Controller
      */
     public function show($id)
     {
-        
+        $phones=Phone::all();
+        $models = Model::all();
+        $problem = Problem::findOrFail($id);
+        $solutions = Problem::findOrFail($id)->solutions;
+        return view("admin.problems.show", compact('solutions', 'problem', 'phones', 'models'));
     }
 
     function model_problem($id)
@@ -90,6 +113,10 @@ class ProblemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $fault = Problem::findOrFail($id);
+
+        $fault->delete();
+
+        return redirect()->route('problems.index')->with('success_message', 'A fault has been successfully deleted!');
     }
 }
